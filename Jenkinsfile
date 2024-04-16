@@ -3,7 +3,8 @@ pipeline {
         label 'base'
     }
     triggers {
-        pollSCM('* * * * *') // Polls the SCM (Git) every minute
+        // Trigger the pipeline only when there is a new commit to the repository
+        changeset()
     }
     
     stages {
