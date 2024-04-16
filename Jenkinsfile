@@ -2,10 +2,6 @@ pipeline {
     agent {
         label 'base'
     }
-    triggers {
-        // Trigger the pipeline only when there is a new commit to the repository
-        changeset()
-    }
     
     stages {
         stage('Checkout') {
