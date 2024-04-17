@@ -19,7 +19,7 @@ pipeline {
             steps {
                 // Run the Docker image as a container
                 script {
-                    docker.image('my-mvcapp-image').run('-p 9000:8080', '-p 9001:8081', '--rm')
+                    docker.image('ibrashahin/my-mvcapp-image:latest').run('-p 9000:8080', '-p 9001:8081', '--rm')
                 }
             }
         }
