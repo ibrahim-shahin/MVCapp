@@ -15,7 +15,7 @@ pipeline {
                     def customImage = docker.build('my-mvcapp-image')
                     
                     // Push the Docker image to Docker Hub using Jenkins credentials
-                    docker.withRegistry('https://registry.hub.docker.com', 'DockerHub') {
+                    docker.withRegistry('ibrashahin', 'DockerHub') {
                         customImage.push('latest')
                     }
                 }
