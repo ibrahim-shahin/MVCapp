@@ -2,20 +2,13 @@ pipeline {
     agent any
     
     stages {
-        stage('Checkout') {
-            steps {
-                // Checkout the source code from the GitHub repository
-                git 'https://github.com/ibrahim-shahin/MVCapp.git'
-            }
-        }
-        
         stage('Build Docker Image') {
             steps {
                 script {
-                    def customImage = docker.build('my-mvcapp-image')
+                    def customImage = docker.build('ibrashahin/my-mvcapp-image')
                     
                     // Push the Docker image to Docker Hub using Jenkins credentials
-                    docker.withRegistry('ibrashahin', 'DockerHub') {
+                    docker.withRegistry('https://registry.hub.docker.com', 'DockerHub') {
                         customImage.push('latest')
                     }
                 }
