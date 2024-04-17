@@ -11,9 +11,13 @@ pipeline {
         
         stage('Build Docker Image') {
             steps {
-                // Build a Docker image from the retrieved source code
                 script {
-                    docker.build('my-mvcapp-image')
+                    def customImage = docker.build('my-mvcapp-image')
+                    
+                    // Push the Docker image to Docker Hub using Jenkins credentials
+                    docker.withRegistry('https://registry.hub.docker.com', 'DockerHub') {
+                        customImage.push('latest')
+                    }
                 }
             }
         }
@@ -22,7 +26,7 @@ pipeline {
             steps {
                 // Run the Docker image as a container
                 script {
-                    docker.image('my-mvcapp-image').run('-p 9000:8080', '-p 9001:8081')
+                    docker.image('my-mvcapp-image').run('-p 9000:8080', '-p 9001:8081', '--rm')
                 }
             }
         }
