@@ -19,9 +19,9 @@ pipeline {
         
         stage('Run Docker Image') {
             steps {
-                // Run the Docker image as a container
                 script {
-                    docker.image('ibrashahin/my-mvcapp-image:latest').run('-p 9000:8080', '-p 9001:8081', '--rm')
+                    // Run the Docker image as a container with automatic deletion after it stops
+                    sh 'docker run -p 9000:8080 -p 9001:8081 --rm ibrashahin/my-mvcapp-image:latest'
                 }
             }
         }
