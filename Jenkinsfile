@@ -21,7 +21,7 @@ pipeline {
             steps {
                 script {
                     // Run the Docker image as a container with automatic deletion after it stops
-                    sh 'docker run -p 9000:8080 -p 9001:8081 --rm ibrashahin/my-mvcapp-image:latest'
+                    sh 'docker run -d -p 9000:8080 -p 9001:8081 --rm ibrashahin/my-mvcapp-image:latest'
                 }
             }
         }
